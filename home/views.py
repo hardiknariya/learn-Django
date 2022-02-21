@@ -34,7 +34,7 @@ class StudentUpdate (generics.UpdateAPIView):
     serializer_class = StudentSerializer
     models = models.Student
     queryset = models.objects.all()
-    http_method_names = ['patch', 'put']
+    http_method_names = ['patch']
     permission_classes = (IsAuthenticated,)
 
     def get_queryset(self):
