@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'rest_framework',
 
     'home',
+    'account'
 ]
 
 REST_FRAMEWORK = {
@@ -145,6 +146,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
+
+AUTH_USER_MODEL = 'account.CustomUser'
 
 
 # SWAGGER_SETTINGS = {
