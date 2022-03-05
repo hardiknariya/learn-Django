@@ -7,11 +7,9 @@ from rest_framework_swagger.views import get_swagger_view
 from django.http import HttpResponse
 from django.conf import settings
 
-
 AdminSite.site_header = 'Hardik Api Section'
 AdminSite.site_title = 'Hardik Api Section'
 AdminSite.index_title = ''
-
 
 schema_view = get_swagger_view(title='HARDIK API VIEW')
 
@@ -47,5 +45,6 @@ urlpatterns = [
     path('', schema_view) if settings.DEBUG else path('', home),
 
     # all path
-    path('app/', include('home.urls'))
+    path('app/', include('home.urls'), name="home"),
+    path("user/", include('account.urls'), name="user")
 ]

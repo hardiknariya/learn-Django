@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser , PermissionsMixin
+from django.contrib.auth.models import AbstractUser, PermissionsMixin
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.base_user import BaseUserManager
 
@@ -35,9 +35,8 @@ class CustomUserManager(BaseUserManager):
 
 
 class CustomUser(AbstractUser, PermissionsMixin):
-
     username = models.CharField(max_length=50, unique=True, default=None)
-    email = models.EmailField(_('email address'), unique=True, null=False)
+    email = models.EmailField(_('email address'), null=False, blank=False)
     created_at = models.DateTimeField(auto_now_add=True, null=True)
 
     USERNAME_FIELD = 'username'

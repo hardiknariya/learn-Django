@@ -39,23 +39,19 @@ INSTALLED_APPS = [
 
     'rest_framework_swagger',
     'rest_framework',
+    "rest_framework.authtoken",
 
     'home',
     'account'
 ]
 
 REST_FRAMEWORK = {
-    # Use Django's standard `django.contrib.auth` permissions,
-    # or allow read-only access for unauthenticated users.
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissions',
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
-        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
     ],
-    # 'DEFAULT_AUTHENTICATION_CLASSES': (
-    #     'rest_framework.authentication.TokenAuthentication',
-    #     # 'base.authentication.TokenAuthentication',
-    # ),
+    # 'DEFAULT_PERMISSION_CLASSES': [
+    #     'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+    # ],
     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema'
 }
 
@@ -149,16 +145,14 @@ STATICFILES_DIRS = (
 
 AUTH_USER_MODEL = 'account.CustomUser'
 
-
-# SWAGGER_SETTINGS = {
-#     'USE_SESSION_AUTH': False,
-#     'JSON_EDITOR': True,
-#     'SECURITY_DEFINITIONS': {
-#         'oauth2': {
-#             'type': 'apiKey',
-#             'description': 'Example value. Token ac8bfe1ee265c14861b06a4c7ff4a3d9d04c9a1f12d3',
-#             'name': 'Authorization',
-#             'in': 'header',
-#         }
-#     },
-# }
+SWAGGER_SETTINGS = {
+    'USE_SESSION_AUTH': False,
+    'JSON_EDITOR': True,
+    'SECURITY_DEFINITIONS': {
+        'api_key': {
+            'type': 'apiKey',
+            'in': 'header',
+            'name': 'Authorization'
+        }
+    },
+}
