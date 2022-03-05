@@ -16,6 +16,7 @@ class StudentList(generics.ListAPIView):
     serializer_class = StudentSerializer
     models = models.Student
     queryset = models.objects.all()
+    permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
         return self.queryset.filter()
@@ -25,6 +26,7 @@ class StudentCreate(generics.CreateAPIView):
     serializer_class = StudentSerializer
     models = models.Student
     queryset = models.objects.all()
+    permission_classes = [IsAuthenticated]
 
     def perform_create(self, serializer):
         serializer.save()
@@ -35,7 +37,7 @@ class StudentUpdate (generics.UpdateAPIView):
     models = models.Student
     queryset = models.objects.all()
     http_method_names = ['patch']
-    permission_classes = (IsAuthenticated,)
+    permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
         return self.queryset.filter(pk=self.kwargs['pk'])
@@ -44,7 +46,7 @@ class StudentUpdate (generics.UpdateAPIView):
 class StudentDelete(generics.DestroyAPIView):
     serializer_class = StudentSerializer
     queryset = models.Student.objects.all()
-    permission_classes = (IsAuthenticated,)
+    permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
         return self.queryset.filter(pk=self.kwargs['pk'])
