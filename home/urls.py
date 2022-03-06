@@ -3,7 +3,7 @@ from home import views
 
 app_name = 'home'
 urlpatterns = [
-    path('', views.index, name="home"),
+    path('', views.index, name="app-home"),
 
     path('student/', include([
         path('list/', views.StudentList.as_view(), name='list-student'),
